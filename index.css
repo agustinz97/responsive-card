@@ -4,6 +4,12 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     scroll-behavior: smooth;
+    -webkit-appearance: none;
+}
+
+body{
+    display: flex;
+    position: relative;
 }
 
 .tarjeta{
@@ -233,6 +239,106 @@
 
 .tarjeta .datos button:hover{
     color: rgb(40, 139, 219);
+}
+
+.modal{
+    position: absolute;
+    padding: 10px;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.3);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.visible{
+    display: flex;
+}
+
+.modal .wrap{
+    padding: 20px;
+    max-width: 900px;
+    background-color: #fff;;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+}
+
+.modal .wrap span{
+    color:rgb(86, 162, 224);
+    margin-bottom: 40px;
+}
+
+.modal .wrap label{
+    padding: 5px;
+    color: #777;
+    transition: all linear .2s;
+    font-size: 14px;
+    transform: translateY(-100%);
+    cursor: text
+}
+
+.modal .wrap input{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    transition: all linear .2s;
+}
+
+.modal .wrap input:focus,
+.modal .wrap input:not(:placeholder-shown){
+    border-bottom: 1px solid rgb(86, 162, 224);
+}
+
+.modal .wrap input:focus ~label,
+.modal .wrap input:not(:placeholder-shown) ~label{
+    color:rgb(86, 162, 224);
+    transform: translateY(calc(-100% - 25px));
+}
+
+.modal .wrap input:invalid,
+.modal .wrap input.invalid{
+    border-bottom: 1px solid rgb(236, 78, 78);
+}
+
+.modal .wrap input:invalid ~label,
+.modal .wrap input.invalid ~label{
+    color: rgb(236, 78, 78);
+    transform: translateY(calc(-100% - 25px));
+}
+
+.modal .wrap p{
+    font-size: 14px;
+    color: rgb(236, 78, 78);
+    display: none;
+}
+
+.modal .wrap p.visible{
+    display: initial;
+}
+
+.modal .wrap button{
+    background: none;
+    margin-top: 15px;
+    border: none;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: rgb(86, 162, 224);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.modal .wrap button:hover{
+    color: rgb(40, 139, 219);
+}
+
+.modal .wrap button.close{
+    margin: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
 }
 
 @media (max-width: 733px){

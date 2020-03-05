@@ -126,6 +126,63 @@ document.addEventListener('DOMContentLoaded', () => {
       dotsList.innerHTML += `<li class="dot"></li>`
     }
   })
-
-
 })
+
+/* funcion para abrir el modal */
+function abrirModal(){
+  const modal = document.getElementById('modal');
+
+  modal.classList.add('visible');
+
+}
+
+//funcion para cerrar el modal
+function cerrarModal(){
+  const modal = document.getElementById('modal');
+
+  modal.classList.remove('visible');
+
+}
+
+/* chequear si lo ingresado es un email */
+function isEmail(value){
+
+  const patron = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+
+  return value.match(patron)
+
+}
+
+function checkInput(input){
+
+  const mensaje =  document.getElementById('mensaje');
+
+  if(isEmail(input.value) || input.value === ''){
+    input.classList.remove('invalid');
+    mensaje.classList.remove('visible');
+  }else{
+    input.classList.add('invalid');
+    mensaje.classList.add('visible');
+  }
+
+}
+
+/* simular envio del mensaje */
+function enviar(){
+
+  const input = document.getElementById('input-email');
+  const mensaje =  document.getElementById('mensaje');
+
+
+  if(isEmail(input.value)){
+    const modal = document.getElementById('modal').children[0];
+    modal.innerHTML = `<button onclick='cerrarModal()' class="close" type="button">
+                        <i class="fas fa-times-circle"></i>
+                      </button>
+                      <span>Gracias por ponerse en contacto!</span>`;
+    }else{
+      input.classList.add('invalid');
+      mensaje.classList.add('visible');
+    }
+
+}

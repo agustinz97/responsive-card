@@ -19,6 +19,7 @@
 
     <!-- estilos -->
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="normalize.css" />
   </head>
   <body>
     <div class="tarjeta">
@@ -82,9 +83,19 @@
             <li>1 Baños</li>
             <li>1 Cocheras</li>
           </ul>
-          <button>Contactar</button>
+          <button onclick="abrirModal()">Contactar</button>
         </div>
       </div>
+    </div>
+
+    <div class="modal" id="modal">
+      <form class="wrap">
+        <span>Para ser contactado por favor ingrese su direccion de correo electrónico</span>
+        <input type="email" id="input-email" placeholder=" " onkeyup="checkInput(this)">
+        <label for="input-email">Correo electrónico</label>
+        <p id="mensaje"> Por favor ingrese un email válido</p>
+        <button type="button" onclick="enviar()">Enviar</button>
+      </form>
     </div>
 
     <script src="index.js"></script>
