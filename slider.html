@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script
+      src="https://kit.fontawesome.com/8fb0187cba.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+
+        .slider{
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+
+        .slider .contenedor{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            overflow: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+            background-color: black;
+        }
+
+        .slider .slide{
+            min-width: 100%;
+            display: flex;
+        }
+
+        .slider .slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider .controles{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slider .controles span#like{
+            color: #000;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: all linear .2s;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .slider .controles span#like path{
+            stroke: white;
+            stroke-width: 30px;
+        }
+
+        .slider .controles span#like.active{
+            color: rgb(236, 78, 78);
+        }
+
+        .slider .controles span#label{
+            position: absolute;
+            top: 10px;
+            left: 0;
+            background-color: rgb(146, 60, 185);
+            color: #fff;
+            padding: 5px 10px;
+            font-weight: bold;
+        }
+
+        .slider .controles span#anterior,
+        .slider .controles span#siguiente{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: rgba(255,255,255, .7);
+            cursor: pointer;
+            transition: all linear .2s;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .slider .controles span#anterior:hover,
+        .slider .controles span#siguiente:hover{
+            color: rgba(255,255,255, 1);
+            background-color: rgba(0,0,0,.7);
+        }
+
+        .slider .controles span#anterior{
+            left: 10px;
+        }
+
+        .slider .controles span#siguiente{
+            right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="slider" id="slider"> 
+        
+        <div class="contenedor" id="contenedor">
+            <div class="slide">
+                <img src="img/48361595105879000264411147341923002599928725183753470390513933417694442320880.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/20387544594618197555129221447133870292361218521378054200428286701090776749748.jpg" alt="">
+            </div>
+            <div class="slide">
+                <img src="img/25522839000022972443327583602063401731716201060001914777867844777724995143912.jpg" alt="">
+            </div>
+        </div>
+        
+        <div class="controles">
+          <span id="label">Super destacado</span>
+          <span id="like" onclick="toggleLike(this)"><i class="fas fa-heart"></i></span>
+
+          <span id="anterior" onclick="prev()"><i class="fas fa-chevron-left"></i></span>
+          <span id="siguiente" onclick="next()"><i class="fas fa-chevron-right"></i></span>
+        </div> 
+        
+    </div>
+
+    <script>
+        /* Funcion para poner o quitar el "Me Gusta" */
+        function toggleLike(sender){
+                
+            sender.classList.toggle("active");
+            localStorage.setItem('liked', sender.classList.contains('active'));
+        }
+
+        function next(){
+            
+            const slider = document.getElementById('contenedor');
+            slider.scrollTo(slider.scrollLeft + slider.clientWidth, 0)
+
+        }
+
+        function prev(){
+            
+            const slider = document.getElementById('contenedor');
+            slider.scrollTo(slider.scrollLeft - slider.clientWidth, 0)
+
+        }
+    </script>
+</body>
+</html>
